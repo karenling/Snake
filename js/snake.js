@@ -28,7 +28,7 @@
     }
 
     if (this.isOutOfBounds()) {
-      alert("you died!");
+      alert("Game Over!");
       this.segments = [];
       this.over = true;
       return;
