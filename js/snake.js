@@ -20,6 +20,7 @@
     var newSegment = this.segments[0].plus(directions[this.dir]);
     this.segments.unshift(newSegment);
 
+    return this.segments;
   };
 
   Snake.prototype.turn = function (newDir) {
@@ -31,7 +32,9 @@
     this.j = j;
   };
 
-  Coord.prototype.plus = function (i, j) {
+  Coord.prototype.plus = function (pair) {
+    debugger;
+    return new Coord(this.i + pair[0], this.j + pair[1])
 
   };
 
@@ -48,17 +51,32 @@
     this.snake = new Snake(this);
   };
 
-  Board.prototype.render = function () {
+  Board.blankgrid = function (dim) {
     var grid = [];
-    for(var i = 0; i < this.dim; i++) {
+    for(var i = 0; i < dim; i++) {
       var row = [];
-      for (var j = 0; j < this.dim; j++) {
-        row.push(".");
+      for (var j = 0; j < dim; j++) {
+        row.push('.');
       }
       grid.push(row);
     }
-
     return grid;
+  };
+
+  Board.prototype.render = function () {
+    var grid = Board.blankgrid(this.dim);
+    this.snake.segments.forEach(function(segment, index) {
+      grid[segment.i][segment.j] = "S";
+    });
+
+    this.print(grid);
+    // return grid;
+  };
+
+  Board.prototype.print = function (grid) {
+    grid.forEach(function (row, idx) {
+      console.log(row);
+    });
   };
 
 })();
