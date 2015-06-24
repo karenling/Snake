@@ -9,9 +9,13 @@
     this.segments = [new Coord(5, 5)];
     this.bodyLeft = 0;
     this.turning = false;
+    this.over = false;
   };
 
   Snake.prototype.move = function () {
+    if (this.over) {
+      return;
+    }
     var directions = {
       "N": [-1, 0],
       "E": [0, 1],
@@ -26,10 +30,9 @@
     if (this.isOutOfBounds()) {
       alert("you died!");
       this.segments = [];
+      this.over = true;
       return;
     }
-
-
 
     var newSegment = this.segments[0].plus(directions[this.dir]);
     this.segments.unshift(newSegment);
@@ -39,13 +42,15 @@
       if (segment.equals(this.segments[0])) {
         alert("Game Over!");
         this.segments = [];
-        return;
+        this.over = true;
+        return
       }
+
     }.bind(this));
-    //
-    // if (this.segments.length === 0) {
-    //   return;
-    // }
+
+    if (this.over) {
+      return;
+    }
 
     this.turning = false;
 
