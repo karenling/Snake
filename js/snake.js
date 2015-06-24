@@ -32,10 +32,7 @@
 
 
     var newSegment = this.segments[0].plus(directions[this.dir]);
-    // this.segments.unshift(newSegment);
     this.segments.unshift(newSegment);
-
-
 
     // check that snake doesn't hit himself
     this.segments.slice(1).forEach(function (segment) {
@@ -46,13 +43,14 @@
         } else {
           alert("Game Over!");
           this.segments = [];
+          return;
         }
       }
     }.bind(this));
-
-    if (this.segments.length === 0) {
-      return;
-    }
+    //
+    // if (this.segments.length === 0) {
+    //   return;
+    // }
 
     if (this.bodyLeft === 0) {
       this.segments.pop(); // since snake is designed to keep growing, we need to remove one each time
@@ -66,6 +64,8 @@
       this.bodyLeft += 5;
       this.board.newApple();
     }
+
+    this.turning = false;
     return this.segments;
   };
 

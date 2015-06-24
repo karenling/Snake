@@ -6,6 +6,7 @@
   var View = SnakeGame.View = function ($el) {
     this.$el = $el;
     this.board = new SnakeGame.Board(); // from other file
+    this.dim = 20;
     this.setupBoard();
 
     $(window).keydown(function (e) {
@@ -24,13 +25,13 @@
     setInterval(function () {
       this.board.snake.move();
       this.$el.html(this.render.bind(this));
-    }.bind(this), 500);
+    }.bind(this), 100);
   };
 
   View.prototype.setupBoard = function () {
-    for(i = 0; i <= 20; i++) {
+    for(i = 0; i <= this.dim; i++) {
       var $row = $('<div class="row">');
-      for(j = 0; j <= 20; j++) {
+      for(j = 0; j <= this.dim; j++) {
         $row.append($('<div>').addClass("cell row-" + i + " col-" + j));
       }
       this.$el.append($row);
