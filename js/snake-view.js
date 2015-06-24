@@ -5,7 +5,7 @@
 
   var View = SnakeGame.View = function ($el) {
     this.$el = $el;
-    this.board = new SnakeGame.Board(); // from other file
+    this.board = new SnakeGame.Board();
     this.dim = 20;
     this.setupBoard();
 

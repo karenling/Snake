@@ -1,9 +1,18 @@
+.container {
+  text-align: center;
+  font-size: 40px;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+.snake-view {
+  border: 20px solid black;
+  display: inline-block;
+}
 .cell {
-  /*border: 1px solid red;*/
   width:20px;
   height: 20px;
   display: inline-block;
-  background-color: gray;
+  background-color: white;
 
 }
 .snake {

@@ -43,7 +43,7 @@
         alert("Game Over!");
         this.segments = [];
         this.over = true;
-        return
+        return;
       }
 
     }.bind(this));
@@ -55,24 +55,23 @@
     this.turning = false;
 
     if (this.bodyLeft === 0) {
-      this.segments.pop(); // since snake is designed to keep growing, we need to remove one each time
+      this.segments.pop();
     } else {
       this.bodyLeft -= 1;
     }
 
-    // debugger;
-    // eats apple
     if (this.segments[0].i === this.board.apple.coord.i && this.segments[0].j === this.board.apple.coord.j) {
       this.bodyLeft += 5;
       this.board.newApple();
     }
-
-
     return this.segments;
   };
 
   Snake.prototype.isOutOfBounds = function () {
-    return (this.segments[0].i > 20 || this.segments[0].j > 20 || this.segments[0].i < 0 || this.segments[0].j < 0)
+    return (this.segments[0].i > 20 ||
+            this.segments[0].j > 20 ||
+            this.segments[0].i < 0 ||
+            this.segments[0].j < 0);
   };
 
   Snake.prototype.turn = function (newDir) {
@@ -86,7 +85,6 @@
   };
 
   Snake.prototype.isOpposite = function(newDir) {
-    // debugger
     return  (this.dir === "E" && newDir === "W") ||
             (this.dir === "N" && newDir === "S") ||
             (this.dir === "W" && newDir == "E")  ||
@@ -99,19 +97,12 @@
   };
 
   Coord.prototype.plus = function (pair) {
-    return new Coord(this.i + pair[0], this.j + pair[1])
-
+    return new Coord(this.i + pair[0], this.j + pair[1]);
   };
 
-  // snake hits itself
   Coord.prototype.equals = function (coord2) {
-    return (this.i === coord2.i) && (this.j === coord2.j)
+    return (this.i === coord2.i) && (this.j === coord2.j);
   };
-
-  // Coord.prototype.isOpposite = function (dir, newDir) {
-  //   if ()
-  //
-  // };
 
   var Board = SnakeGame.Board = function (dim) {
     this.dim = dim;
@@ -138,7 +129,6 @@
     });
 
     this.print(grid);
-    // return grid;
   };
 
   Board.prototype.print = function (grid) {
@@ -161,15 +151,12 @@
           newAppleIsOnSnake = true;
         }
       }.bind(this));
-
     }
 
     this.apple = new SnakeGame.Apple(random1, random2);
   };
 
-
-
   var Apple = SnakeGame.Apple = function (x, y) {
-    this.coord = new Coord(x, y)
+    this.coord = new Coord(x, y);
   };
 })();
