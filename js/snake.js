@@ -33,7 +33,6 @@
   };
 
   Coord.prototype.plus = function (pair) {
-    debugger;
     return new Coord(this.i + pair[0], this.j + pair[1])
 
   };
