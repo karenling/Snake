@@ -1,1 +1,13 @@
+<link rel="stylesheet" type="text/css" href="../css/stylesheet.css"/>
+<script type="text/javascript" src="../js/jquery-2.1.1.js"></script>
 <script type="text/javascript" src="../js/snake.js"></script>
+<script type="text/javascript" src="../js/snake-view.js"></script>
+
+
+<div class="snake-view"></div>
+
+<script type="text/javascript">
+  $(function () {
+    var game = new SnakeGame.View($('.snake-view'));
+  })
+</script>
