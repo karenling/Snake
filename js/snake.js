@@ -7,6 +7,7 @@
     this.board = board;
     this.dir = "S";
     this.segments = [new Coord(5, 5)];
+    this.bodyLeft = 0;
   };
 
   Snake.prototype.move = function () {
@@ -19,13 +20,19 @@
 
     var newSegment = this.segments[0].plus(directions[this.dir]);
     // this.segments.unshift(newSegment);
-    this.segments = [newSegment];
+    this.segments.unshift(newSegment);
+
+    if (this.bodyLeft === 0) {
+      this.segments.pop();
+    } else {
+      this.bodyLeft -= 1;
+    }
+
     // debugger;
     // eats apple
-    // if (this.segments[0].i === this.board.apple.coord.i && this.segments[0].j === this.board.apple.coord.j) {
-    //   var newSegment = this.segments[0].plus(directions[this.dir]);
-    //   this.segments.push(newSegment);
-    // }
+    if (this.segments[0].i === this.board.apple.coord.i && this.segments[0].j === this.board.apple.coord.j) {
+      this.bodyLeft += 5;
+    }
 
     return this.segments;
   };

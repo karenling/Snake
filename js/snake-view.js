@@ -28,7 +28,6 @@
   };
 
   View.prototype.setupBoard = function () {
-    console.log('setup');
     for(i = 0; i <= 20; i++) {
       var $row = $('<div class="row">');
       for(j = 0; j <= 20; j++) {
