@@ -28,6 +28,7 @@
   };
 
   View.prototype.setupBoard = function () {
+    console.log('setup');
     for(i = 0; i <= 20; i++) {
       var $row = $('<div class="row">');
       for(j = 0; j <= 20; j++) {
@@ -38,10 +39,11 @@
   };
 
   View.prototype.render = function () {
-    this.setupBoard;
+    this.$el.html("");
+    this.setupBoard();
     $('.row-' + this.board.apple.coord.i + '.col-' + this.board.apple.coord.j).addClass('apple');
     this.board.snake.segments.forEach(function(coord, idx) {
       $('.row-' + coord.i + '.col-' + coord.j).addClass('snake');
-    });
+    }.bind(this));
   };
 })();

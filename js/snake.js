@@ -18,7 +18,14 @@
     };
 
     var newSegment = this.segments[0].plus(directions[this.dir]);
-    this.segments.unshift(newSegment);
+    // this.segments.unshift(newSegment);
+    this.segments = [newSegment];
+    // debugger;
+    // eats apple
+    // if (this.segments[0].i === this.board.apple.coord.i && this.segments[0].j === this.board.apple.coord.j) {
+    //   var newSegment = this.segments[0].plus(directions[this.dir]);
+    //   this.segments.push(newSegment);
+    // }
 
     return this.segments;
   };
@@ -82,7 +89,7 @@
   Board.prototype.newApple = function () {
     var random1 = Math.floor(Math.random()*21);
     var random2 = Math.floor(Math.random()*21);
-    this.apple = new SnakeGame.Apple(random1, random2);
+    this.apple = new SnakeGame.Apple(6, 5);
   };
 
   var Apple = SnakeGame.Apple = function (x, y) {
