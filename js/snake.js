@@ -22,6 +22,11 @@
     // this.segments.unshift(newSegment);
     this.segments.unshift(newSegment);
 
+    this.segments.slice(1).forEach(function (segment) {
+      if (segment.equals(this.segments[0])) {
+        alert("hit istself!!!");
+      }
+    }.bind(this));
     if (this.bodyLeft === 0) {
       this.segments.pop(); // since snake is designed to keep growing, we need to remove one each time
     } else {
