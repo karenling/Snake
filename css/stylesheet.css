@@ -1,7 +1,15 @@
 .cell {
-  border: 1px solid red;
+  /*border: 1px solid red;*/
   width:20px;
   height: 20px;
   display: inline-block;
+  background-color: gray;
 
+}
+.snake {
+  background-color: green;
+}
+
+.apple {
+  background-color: red;
 }

@@ -48,6 +48,7 @@
   var Board = SnakeGame.Board = function (dim) {
     this.dim = dim;
     this.snake = new Snake(this);
+    this.newApple();
   };
 
   Board.blankgrid = function (dim) {
@@ -78,4 +79,13 @@
     });
   };
 
+  Board.prototype.newApple = function () {
+    var random1 = Math.floor(Math.random()*21);
+    var random2 = Math.floor(Math.random()*21);
+    this.apple = new SnakeGame.Apple(random1, random2);
+  };
+
+  var Apple = SnakeGame.Apple = function (x, y) {
+    this.coord = new Coord(x, y)
+  };
 })();

@@ -38,8 +38,10 @@
   };
 
   View.prototype.render = function () {
+    this.setupBoard;
+    $('.row-' + this.board.apple.coord.i + '.col-' + this.board.apple.coord.j).addClass('apple');
     this.board.snake.segments.forEach(function(coord, idx) {
-      $('.row-' + coord.i + '.col-' + coord.j).html("S");
-    })
+      $('.row-' + coord.i + '.col-' + coord.j).addClass('snake');
+    });
   };
 })();
