@@ -8,6 +8,7 @@
     this.dir = "S";
     this.segments = [new Coord(5, 5)];
     this.bodyLeft = 0;
+    this.turning = false;
   };
 
   Snake.prototype.move = function () {
@@ -28,10 +29,16 @@
 
 
 
+    // check that snake doesn't hit himself
     this.segments.slice(1).forEach(function (segment) {
       if (segment.equals(this.segments[0])) {
-        alert("Game Over!");
-        this.segments = [];
+        if (this.turning) {
+          this.turning = false;
+          return;
+        } else {
+          alert("Game Over!");
+          this.segments = [];
+        }
       }
     }.bind(this));
 
@@ -51,12 +58,21 @@
       this.bodyLeft += 5;
       this.board.newApple();
     }
-
     return this.segments;
   };
 
   Snake.prototype.turn = function (newDir) {
+    var current = this;
+    if (current.isOpposite(newDir)) {
+      this.turning = true;
+      return;
+    }
     this.dir = newDir;
+  };
+
+  Snake.prototype.isOpposite = function(newDir) {
+    // debugger
+    return (this.dir === "E" && newDir === "W") || (this.dir === "N" && newDir === "S");
   };
 
   var Coord = SnakeGame.Coord = function (i, j) {
@@ -74,9 +90,10 @@
     return (this.i === coord2.i) && (this.j === coord2.j)
   };
 
-  Coord.prototype.isOpposite = function () {
-
-  };
+  // Coord.prototype.isOpposite = function (dir, newDir) {
+  //   if ()
+  //
+  // };
 
   var Board = SnakeGame.Board = function (dim) {
     this.dim = dim;
