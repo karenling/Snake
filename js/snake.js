@@ -37,20 +37,17 @@
     // check that snake doesn't hit himself
     this.segments.slice(1).forEach(function (segment) {
       if (segment.equals(this.segments[0])) {
-        if (this.turning) {
-          this.turning = false;
-          return;
-        } else {
-          alert("Game Over!");
-          this.segments = [];
-          return;
-        }
+        alert("Game Over!");
+        this.segments = [];
+        return;
       }
     }.bind(this));
     //
     // if (this.segments.length === 0) {
     //   return;
     // }
+
+    this.turning = false;
 
     if (this.bodyLeft === 0) {
       this.segments.pop(); // since snake is designed to keep growing, we need to remove one each time
@@ -65,26 +62,30 @@
       this.board.newApple();
     }
 
-    this.turning = false;
+
     return this.segments;
   };
 
   Snake.prototype.isOutOfBounds = function () {
-    return (this.segments[0].i >= 20 || this.segments[0].j >= 20 || this.segments[0].i < 0 || this.segments[0].j < 0)
+    return (this.segments[0].i > 20 || this.segments[0].j > 20 || this.segments[0].i < 0 || this.segments[0].j < 0)
   };
 
   Snake.prototype.turn = function (newDir) {
     var current = this;
-    if (current.isOpposite(newDir)) {
-      this.turning = true;
+    if (current.isOpposite(newDir) || this.turning) {
       return;
+    } else {
+      this.turning = true;
+      this.dir = newDir;
     }
-    this.dir = newDir;
   };
 
   Snake.prototype.isOpposite = function(newDir) {
     // debugger
-    return (this.dir === "E" && newDir === "W") || (this.dir === "N" && newDir === "S");
+    return  (this.dir === "E" && newDir === "W") ||
+            (this.dir === "N" && newDir === "S") ||
+            (this.dir === "W" && newDir == "E")  ||
+            (this.dir === "S" && newDir === "N");
   };
 
   var Coord = SnakeGame.Coord = function (i, j) {
