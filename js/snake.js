@@ -23,6 +23,14 @@
       return;
     }
 
+    if (this.isOutOfBounds()) {
+      alert("you died!");
+      this.segments = [];
+      return;
+    }
+
+
+
     var newSegment = this.segments[0].plus(directions[this.dir]);
     // this.segments.unshift(newSegment);
     this.segments.unshift(newSegment);
@@ -59,6 +67,10 @@
       this.board.newApple();
     }
     return this.segments;
+  };
+
+  Snake.prototype.isOutOfBounds = function () {
+    return (this.segments[0].i >= 20 || this.segments[0].j >= 20 || this.segments[0].i < 0 || this.segments[0].j < 0)
   };
 
   Snake.prototype.turn = function (newDir) {
