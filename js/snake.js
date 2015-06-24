@@ -18,15 +18,27 @@
       "S": [1, 0]
     };
 
+    if (this.segments.length === 0) {
+      return;
+    }
+
     var newSegment = this.segments[0].plus(directions[this.dir]);
     // this.segments.unshift(newSegment);
     this.segments.unshift(newSegment);
 
+
+
     this.segments.slice(1).forEach(function (segment) {
       if (segment.equals(this.segments[0])) {
-        alert("hit istself!!!");
+        alert("Game Over!");
+        this.segments = [];
       }
     }.bind(this));
+
+    if (this.segments.length === 0) {
+      return;
+    }
+
     if (this.bodyLeft === 0) {
       this.segments.pop(); // since snake is designed to keep growing, we need to remove one each time
     } else {
